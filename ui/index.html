@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вход — HR Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="auth-screen">
+  <div class="auth-bg-glow auth-glow1"></div>
+  <div class="auth-bg-glow auth-glow2"></div>
+  <div class="auth-container">
+    <div class="auth-brand">
+      <div class="brand-mark">HR</div>
+      <div class="brand-name">HR Pro</div>
+      <div class="brand-sub">Кадровый учёт предприятия</div>
+    </div>
+    <form id="loginForm" class="auth-form active">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="you@company.ru" required>
+      </div>
+      <div class="field">
+        <label>Пароль</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+      </div>
+      <div class="auth-error" id="loginError"></div>
+      <button type="submit" class="btn btn-primary btn-full">Войти</button>
+      <p class="auth-hint">Нет аккаунта? <a href="register.html" style="color:var(--champagne)">Зарегистрироваться</a></p>
+      <p class="auth-hint" style="margin-top:8px">Демо: <b>admin@hr.ru</b> / <b>admin123</b></p>
+    </form>
+  </div>
+</div>
+<script src="auth.js"></script>
+</body>
+</html>
