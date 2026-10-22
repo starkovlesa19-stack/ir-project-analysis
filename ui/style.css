@@ -233,3 +233,13 @@ body {
   .view-header h1 { font-size:1.5rem; }
   .report-label { width:120px; }
 }
+
+/* Убираем жёлтый фон автозаполнения браузера */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #1a1816 inset !important;
+  -webkit-text-fill-color: #ece7df !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

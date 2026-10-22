@@ -1,5 +1,10 @@
+// Жесткая инициализация демо-данных
 function seedDemo() {
-  const users = JSON.parse(localStorage.getItem('hr_users') || '{}');
+  let users = {};
+  try {
+    users = JSON.parse(localStorage.getItem('hr_users') || '{}');
+  } catch(e) { users = {}; }
+
   if (!users['admin@hr.ru']) {
     users['admin@hr.ru'] = {
       name: 'Администратор',
@@ -8,6 +13,7 @@ function seedDemo() {
     };
     localStorage.setItem('hr_users', JSON.stringify(users));
   }
+  
   if (!localStorage.getItem('hr_departments')) {
     localStorage.setItem('hr_departments', JSON.stringify([
       { id: 1, name: 'Отдел разработки', manager: 'Иванов И.И.' },
@@ -39,6 +45,7 @@ function seedDemo() {
 }
 seedDemo();
 
+// Обработка входа
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
@@ -46,14 +53,27 @@ if (loginForm) {
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
     const error = document.getElementById('loginError');
+    
     const users = JSON.parse(localStorage.getItem('hr_users') || '{}');
-    if (!users[email]) { error.textContent = 'Пользователь не найден'; return; }
-    if (users[email].password !== password) { error.textContent = 'Неверный пароль'; return; }
+    
+    if (!users[email]) { 
+      error.textContent = 'Пользователь не найден'; 
+      return; 
+    }
+    if (users[email].password !== password) { 
+      error.textContent = 'Неверный пароль'; 
+      return; 
+    }
+    
+    // Принудительно сохраняем текущего юзера
     localStorage.setItem('hr_currentUser', email);
+    
+    // Переходим на дашборд
     window.location.href = 'dashboard.html';
   });
 }
 
+// Обработка регистрации
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
   registerForm.addEventListener('submit', (e) => {
@@ -74,6 +94,7 @@ if (registerForm) {
     users[email] = { name, company, password };
     localStorage.setItem('hr_users', JSON.stringify(users));
     localStorage.setItem('hr_currentUser', email);
+    
     window.location.href = 'dashboard.html';
   });
 }
