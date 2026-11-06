@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дашборд — HR Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark small">HR</div>
+      <div>
+        <div class="sidebar-title">HR Pro</div>
+        <div class="sidebar-company" id="companyName">—</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" data-view="dashboard" href="dashboard.html"><span class="nav-icon">◈</span> Дашборд</a>
+      <a class="nav-item" data-view="employees" href="employees.html"><span class="nav-icon">◉</span> Сотрудники</a>
+      <a class="nav-item" data-view="departments" href="departments.html"><span class="nav-icon">▤</span> Подразделения</a>
+      <a class="nav-item" data-view="positions" href="positions.html"><span class="nav-icon">◆</span> Должности</a>
+      <a class="nav-item" data-view="timesheet" href="timesheet.html"><span class="nav-icon">▦</span> Табель</a>
+      <a class="nav-item" data-view="reports" href="reports.html"><span class="nav-icon">▥</span> Отчёты</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-badge">
+        <div class="avatar" id="userAvatar">—</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">—</div>
+          <div class="user-email" id="userEmail">—</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-full" id="logoutBtn">Выйти</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="view-header">
+      <div>
+        <h1>Дашборд</h1>
+        <p class="view-sub">Общая картина по кадрам</p>
+      </div>
+    </header>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Сотрудников</div>
+        <div class="kpi-value" id="kpiEmployees">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Подразделений</div>
+        <div class="kpi-value" id="kpiDepartments">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Должностей</div>
+        <div class="kpi-value" id="kpiPositions">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">В отпуске</div>
+        <div class="kpi-value" id="kpiOnLeave">0</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">Последние сотрудники</h2>
+      <div id="recentEmployees" class="recent-list"></div>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

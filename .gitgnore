@@ -1,0 +1,72 @@
+Table departments {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  parent_id int [ref: > departments.id]
+  manager_id int
+  created_at timestamp [default: `now()`]
+}
+
+Table positions {
+  id int [pk, increment]
+  title varchar(100) [not null]
+  base_salary decimal(10,2) [not null]
+  description text
+}
+
+Table employees {
+  id int [pk, increment]
+  full_name varchar(150) [not null]
+  birth_date date
+  phone varchar(20) [unique]
+  email varchar(100)
+  department_id int [ref: > departments.id, not null]
+  position_id int [ref: > positions.id, not null]
+  hire_date date [not null]
+  status varchar(30) [not null, default: 'active']
+  created_at timestamp [default: `now()`]
+}
+
+Table employment_contracts {
+  id int [pk, increment]
+  employee_id int [ref: > employees.id, not null]
+  contract_number varchar(50) [unique, not null]
+  contract_type varchar(50)
+  start_date date [not null]
+  end_date date
+  salary decimal(10,2) [not null]
+}
+
+Table leaves {
+  id int [pk, increment]
+  employee_id int [ref: > employees.id, not null]
+  leave_type varchar(50) [not null]
+  start_date date [not null]
+  end_date date [not null]
+  status varchar(30) [not null, default: 'pending']
+}
+
+Table timesheets {
+  id int [pk, increment]
+  employee_id int [ref: > employees.id, not null]
+  work_date date [not null]
+  hours_worked decimal(4,1) [not null]
+  absence_reason varchar(100)
+}
+
+Table salary_payments {
+  id int [pk, increment]
+  employee_id int [ref: > employees.id, not null]
+  period varchar(20) [not null]
+  amount decimal(10,2) [not null]
+  paid_at date
+  status varchar(30) [not null, default: 'pending']
+}
+
+Indexes {
+  employees.department_id [name: 'idx_employees_department']
+  employees.status [name: 'idx_employees_status']
+  timesheets.work_date [name: 'idx_timesheets_date']
+  leaves.employee_id [name: 'idx_leaves_employee']
+  employment_contracts.employee_id [name: 'idx_contracts_employee']
+  salary_payments.employee_id [name: 'idx_payments_employee']
+}
